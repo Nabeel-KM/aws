@@ -13,6 +13,8 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
+      with:
+        clean: false
 
     - name: Set up Terraform
       run: terraform version  # Verifies Terraform is accessible on the runner
