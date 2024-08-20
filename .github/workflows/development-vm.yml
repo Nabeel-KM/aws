@@ -1,0 +1,33 @@
+name: Terraform on Self-Hosted Runner
+
+on:
+  push:
+    branches:
+      - main
+
+
+jobs:
+  terraform:
+    runs-on: local-runner  # Specify the self-hosted runner
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Terraform
+      run: terraform version  # Verifies Terraform is accessible on the runner
+
+    - name: Terraform Init
+      run: terraform init
+
+    - name: Terraform Format
+      run: terraform fmt -check
+
+    - name: Terraform Validate
+      run: terraform validate
+
+    - name: Terraform Plan
+      run: terraform plan
+
+    - name: Terraform Apply
+      run: terraform apply -auto-approve
